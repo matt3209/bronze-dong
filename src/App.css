@@ -1,0 +1,36 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: #0f0f0f;
+}
+
+.image-wrapper {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  max-height: min(85vh, 85vw * 9 / 16);
+  object-fit: contain;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 0.75rem;
+  }
+
+  .hero-image {
+    max-height: min(90vh, 90vw * 9 / 16);
+  }
+}
