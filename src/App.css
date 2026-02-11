@@ -44,13 +44,14 @@
     overflow: hidden;
   }
 
-  /* Fill height, crop sides only — ~10% less crop on sides */
+  /* Full height, ~75% of image width visible (was ~50% at scale 1) */
   .hero-image {
-    height: 90%;
+    height: 100%;
     width: auto;
-    min-height: 90%;
+    min-height: 100%;
     object-fit: none;
     object-position: center center;
+    transform: scale(0.67);
     border-radius: 0;
     box-shadow: none;
   }
