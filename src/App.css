@@ -1,10 +1,38 @@
 .app {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  gap: 1.5rem;
   background: #0f0f0f;
+}
+
+.registry-button {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: linear-gradient(135deg, #b87333, #cd8e54);
+  border: none;
+  border-radius: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 16px rgba(184, 115, 51, 0.35);
+}
+
+.registry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(184, 115, 51, 0.5);
+}
+
+.registry-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(184, 115, 51, 0.3);
 }
 
 .image-wrapper {
@@ -32,6 +60,7 @@
     padding: 0;
     min-height: 100vh;
     min-height: 100dvh;
+    gap: 0;
   }
 
   .image-wrapper {
@@ -54,5 +83,24 @@
     transform: scale(0.67);
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .registry-button {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(184, 115, 51, 0.35);
+  }
+
+  .registry-button:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+
+  .registry-button:active {
+    transform: translateX(-50%) translateY(0);
   }
 }

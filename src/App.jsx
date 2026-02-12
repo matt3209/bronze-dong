@@ -25,6 +25,15 @@ function App() {
           fetchPriority="high"
         />
       </div>
+
+      <a
+        className="registry-button"
+        href="https://www.theknot.com/us/sara-opie-and-mitch-deuster-feb-2026/registry"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        🎁 Wedding Registry
+      </a>
     </main>
   )
 }
