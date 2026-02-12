@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import heroImage from './assets/hero.png'
 import congratsImage from './assets/congrats.png'
+import Countdown from './components/Countdown'
 import './App.css'
 
 function App() {
@@ -25,6 +26,17 @@ function App() {
           fetchPriority="high"
         />
       </div>
+
+      <Countdown />
+
+      <a
+        className="registry-button"
+        href="https://www.theknot.com/us/sara-opie-and-mitch-deuster-feb-2026/registry"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Wedding Registry
+      </a>
     </main>
   )
 }
