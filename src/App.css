@@ -71,14 +71,12 @@
     overflow: hidden;
   }
 
-  /* Full height, ~75% of image width visible (was ~50% at scale 1) */
+  /* Fill the viewport; crop sides to fit portrait screen */
   .hero-image {
+    width: 100%;
     height: 100%;
-    width: auto;
-    min-height: 100%;
-    object-fit: none;
+    object-fit: cover;
     object-position: center center;
-    transform: scale(0.67);
     border-radius: 0;
     box-shadow: none;
   }
