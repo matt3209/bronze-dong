@@ -1,9 +1,11 @@
 .app {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  gap: 1.5rem;
   background: #0f0f0f;
 }
 
@@ -25,6 +27,31 @@
   display: block;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.registry-link {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #0f0f0f;
+  background: linear-gradient(135deg, #d4af37, #f5d782, #d4af37);
+  border-radius: 2rem;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.registry-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5);
+}
+
+.registry-link:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
 }
 
 @media (max-width: 480px) {
@@ -54,5 +81,23 @@
     transform: scale(0.67);
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .registry-link {
+    position: fixed;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
+  }
+
+  .registry-link:hover {
+    transform: translateX(-50%) translateY(-2px);
+  }
+
+  .registry-link:active {
+    transform: translateX(-50%) translateY(0);
   }
 }
