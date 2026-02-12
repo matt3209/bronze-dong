@@ -30,9 +30,9 @@ function App() {
         href="https://www.theknot.com/us/sara-opie-and-mitch-deuster-feb-2026/registry"
         target="_blank"
         rel="noopener noreferrer"
-        className="registry-link"
+        className="registry-button"
       >
-        Wedding Registry
+        View Our Wedding Registry
       </a>
     </main>
   )

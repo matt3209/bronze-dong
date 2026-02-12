@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  gap: 1.5rem;
+  gap: 2rem;
   background: #0f0f0f;
 }
 
@@ -29,29 +29,29 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-.registry-link {
+.registry-button {
   display: inline-block;
-  padding: 0.85rem 2rem;
-  font-size: 1.1rem;
+  padding: 0.875rem 2.5rem;
+  background: linear-gradient(135deg, #c9a96e, #b8860b);
+  color: #fff;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: 0.04em;
-  color: #0f0f0f;
-  background: linear-gradient(135deg, #d4af37, #f5d782, #d4af37);
-  border-radius: 2rem;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+  border-radius: 50px;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.35);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  font-family: system-ui, -apple-system, sans-serif;
 }
 
-.registry-link:hover {
+.registry-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 28px rgba(201, 169, 110, 0.5);
 }
 
-.registry-link:active {
+.registry-button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
+  box-shadow: 0 2px 12px rgba(201, 169, 110, 0.3);
 }
 
 @media (max-width: 480px) {
@@ -83,21 +83,22 @@
     box-shadow: none;
   }
 
-  .registry-link {
+  .registry-button {
     position: fixed;
-    bottom: 1.5rem;
+    bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     font-size: 1rem;
-    padding: 0.75rem 1.75rem;
+    padding: 0.75rem 2rem;
+    white-space: nowrap;
   }
 
-  .registry-link:hover {
+  .registry-button:hover {
     transform: translateX(-50%) translateY(-2px);
   }
 
-  .registry-link:active {
+  .registry-button:active {
     transform: translateX(-50%) translateY(0);
   }
 }
