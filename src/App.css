@@ -1,11 +1,15 @@
 .app {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  gap: 1.5rem;
   background: #0f0f0f;
 }
+
+/* ── Image ── */
 
 .image-wrapper {
   width: 100%;
@@ -27,24 +31,110 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
+/* ── Countdown ── */
+
+.countdown {
+  text-align: center;
+  color: #fff;
+}
+
+.countdown-heading {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #cd8e54;
+}
+
+.countdown-message {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #d4af37;
+  margin: 0;
+}
+
+.countdown-units {
+  display: flex;
+  gap: 1rem;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 4rem;
+  padding: 0.6rem 0.5rem;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(205, 142, 84, 0.25);
+}
+
+.countdown-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  color: #fff;
+}
+
+.countdown-label {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #999;
+  margin-top: 0.25rem;
+}
+
+/* ── Registry Button ── */
+
+.registry-button {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #0f0f0f;
+  background: linear-gradient(135deg, #d4af37, #f5d782, #d4af37);
+  border: none;
+  border-radius: 2rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.registry-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.5);
+}
+
+.registry-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* ── Mobile ── */
+
 @media (max-width: 480px) {
   .app {
     padding: 0;
     min-height: 100vh;
     min-height: 100dvh;
+    gap: 0;
+    justify-content: flex-start;
   }
 
   .image-wrapper {
-    position: fixed;
-    inset: 0;
+    position: relative;
     width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    height: 60dvh;
     max-width: none;
     overflow: hidden;
   }
 
-  /* Full height, ~75% of image width visible (was ~50% at scale 1) */
   .hero-image {
     height: 100%;
     width: auto;
@@ -54,5 +144,37 @@
     transform: scale(0.67);
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .countdown {
+    padding: 1rem 0 0;
+  }
+
+  .countdown-heading {
+    font-size: 0.85rem;
+  }
+
+  .countdown-units {
+    gap: 0.6rem;
+  }
+
+  .countdown-unit {
+    min-width: 3.2rem;
+    padding: 0.5rem 0.35rem;
+  }
+
+  .countdown-value {
+    font-size: 1.35rem;
+  }
+
+  .countdown-label {
+    font-size: 0.6rem;
+  }
+
+  .registry-button {
+    margin-top: 0.75rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    padding: 0.75rem 1.75rem;
   }
 }
