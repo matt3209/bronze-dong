@@ -8,14 +8,7 @@ function App() {
 
   return (
     <main className="app">
-      <div
-        className="image-wrapper"
-        role="button"
-        tabIndex={0}
-        onClick={() => setClicked(true)}
-        onKeyDown={(e) => e.key === 'Enter' && setClicked(true)}
-        style={{ cursor: clicked ? 'default' : 'pointer' }}
-      >
+      <div className="image-wrapper">
         <img
           src={clicked ? congratsImage : heroImage}
           alt={clicked ? 'Congrats on the DONG Sara' : 'BRONZEDONGS.COM'}
@@ -24,6 +17,14 @@ function App() {
           height="675"
           fetchPriority="high"
         />
+        {!clicked && (
+          <button
+            className="registry-btn"
+            onClick={() => setClicked(true)}
+          >
+            Registry
+          </button>
+        )}
       </div>
     </main>
   )

@@ -8,6 +8,7 @@
 }
 
 .image-wrapper {
+  position: relative;
   width: 100%;
   max-width: 900px;
   display: flex;
@@ -25,6 +26,36 @@
   display: block;
   border-radius: 0.5rem;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.registry-btn {
+  position: absolute;
+  bottom: 12%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 2.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: inherit;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  border: 3px solid #000;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.registry-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+  transform: translateX(-50%) scale(1.05);
+}
+
+.registry-btn:active {
+  transform: translateX(-50%) scale(0.97);
 }
 
 @media (max-width: 480px) {
@@ -52,5 +83,11 @@
     object-position: center center;
     border-radius: 0;
     box-shadow: none;
+  }
+
+  .registry-btn {
+    bottom: 10%;
+    padding: 0.65rem 2rem;
+    font-size: 1.1rem;
   }
 }
