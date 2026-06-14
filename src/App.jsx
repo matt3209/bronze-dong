@@ -20,13 +20,20 @@ function App() {
           src={clicked ? congratsImage : heroImage}
           alt={clicked ? 'Congrats on the DONG Sara' : 'BRONZEDONGS.COM'}
           className="hero-image"
-          width="1200"
-          height="675"
+          width="1402"
+          height="1122"
           fetchPriority="high"
         />
       </div>
 
-
+      <a
+        href="https://registry.theknot.com/lauren-leonardelli-luc-leszczynski-june-2026-wi/65946488"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="registry-button"
+      >
+        View Our Wedding Registry
+      </a>
     </main>
   )
 }

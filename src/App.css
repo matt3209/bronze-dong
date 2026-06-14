@@ -62,43 +62,25 @@
   }
 
   .image-wrapper {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
+    width: 100%;
     max-width: none;
-    overflow: hidden;
+    padding: 1rem;
   }
 
-  /* Full height, ~75% of image width visible (was ~50% at scale 1) */
+  /* Fit the whole image within the viewport, no cropping */
   .hero-image {
-    height: 100%;
-    width: auto;
-    min-height: 100%;
-    object-fit: none;
-    object-position: center center;
-    transform: scale(0.67);
-    border-radius: 0;
-    box-shadow: none;
+    width: 100%;
+    height: auto;
+    max-height: 80vh;
+    max-height: 80dvh;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
   .registry-button {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
     font-size: 1rem;
     padding: 0.75rem 2rem;
     white-space: nowrap;
-  }
-
-  .registry-button:hover {
-    transform: translateX(-50%) translateY(-2px);
-  }
-
-  .registry-button:active {
-    transform: translateX(-50%) translateY(0);
   }
 }
