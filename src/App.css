@@ -1,73 +1,172 @@
 .app {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 1rem;
-  gap: 2rem;
-  background: #0f0f0f;
+  gap: 2.5rem;
+  padding: 3rem 1.5rem;
+  background:
+    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(201, 162, 39, 0.08), transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 110%, rgba(0, 0, 0, 0.6), transparent 55%),
+    #14120f;
+  color: #e8e2d5;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  text-align: center;
 }
 
-.image-wrapper {
-  width: 100%;
-  max-width: 900px;
+/* Flexible spacers: center content when it fits, top-align + scroll when it doesn't */
+.app::before,
+.app::after {
+  content: '';
+  flex: 1;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.masthead {
+  max-width: 46rem;
+}
+
+.overline {
+  margin: 0 0 1.25rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #a89468;
+}
+
+.headline {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: #f3ecdd;
+  text-wrap: balance;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.ornament {
   display: flex;
   align-items: center;
   justify-content: center;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
+  gap: 0.875rem;
+  margin: 1.5rem auto 1.25rem;
 }
 
-.hero-image {
-  width: 100%;
-  height: auto;
-  max-height: min(85vh, 85vw * 9 / 16);
-  object-fit: contain;
-  display: block;
-  border-radius: 0.5rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+.rule {
+  width: 4.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #a8925a);
 }
 
-.congrats-text {
+.rule:last-child {
+  background: linear-gradient(90deg, #a8925a, transparent);
+}
+
+.diamond {
+  width: 7px;
+  height: 7px;
+  background: #c9a95e;
+  transform: rotate(45deg);
+}
+
+.subhead {
   margin: 0;
+  font-size: clamp(1.375rem, 3.5vw, 1.875rem);
+  font-style: italic;
+  font-weight: 500;
+  color: #c9a95e;
+}
+
+.statue {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.statue-image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-height: min(68vh, 42rem);
+  max-width: min(86vw, 24rem);
+  border: 1px solid rgba(201, 169, 94, 0.55);
+  outline: 1px solid rgba(201, 169, 94, 0.2);
+  outline-offset: 6px;
+  border-radius: 2px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.caption {
+  font-size: 0.9375rem;
+  letter-spacing: 0.04em;
+  color: #9c9483;
+}
+
+.footer {
   font-family: system-ui, -apple-system, sans-serif;
-  font-size: clamp(1.5rem, 5vw, 3rem);
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  text-align: center;
-  background: linear-gradient(135deg, #c9a96e, #b8860b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 4px 20px rgba(201, 169, 110, 0.35));
+  font-size: 0.6875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6d6552;
+}
+
+@media (min-width: 1024px) {
+  .app {
+    padding: 2rem 3rem;
+  }
+
+  .hero {
+    flex-direction: row;
+    align-items: center;
+    gap: 5rem;
+  }
+
+  .masthead {
+    max-width: 34rem;
+    text-align: left;
+  }
+
+  .ornament {
+    justify-content: flex-start;
+    margin-left: 0;
+  }
+
+  .statue-image {
+    max-height: min(66vh, 44rem);
+  }
 }
 
 @media (max-width: 480px) {
   .app {
-    padding: 0;
-    min-height: 100vh;
-    min-height: 100dvh;
+    gap: 2rem;
+    padding: 2.5rem 1.25rem;
   }
 
-  .image-wrapper {
-    width: 100%;
-    max-width: none;
-    padding: 1rem;
+  .overline {
+    font-size: 0.6875rem;
+    letter-spacing: 0.28em;
   }
 
-  /* Fit the whole image within the viewport, no cropping */
-  .hero-image {
-    width: 100%;
-    height: auto;
-    max-height: 80vh;
-    max-height: 80dvh;
-    object-fit: contain;
-    border-radius: 0.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  }
-
-  .congrats-text {
-    padding: 1rem 1rem 0;
+  .statue-image {
+    max-height: 62vh;
+    max-height: 62dvh;
+    max-width: 88vw;
+    outline-offset: 4px;
   }
 }
