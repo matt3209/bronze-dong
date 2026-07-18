@@ -29,29 +29,18 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-.registry-button {
-  display: inline-block;
-  padding: 0.875rem 2.5rem;
-  background: linear-gradient(135deg, #c9a96e, #b8860b);
-  color: #fff;
+.congrats-text {
+  margin: 0;
   font-family: system-ui, -apple-system, sans-serif;
-  font-size: 1.125rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.35);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.registry-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 28px rgba(201, 169, 110, 0.5);
-}
-
-.registry-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 12px rgba(201, 169, 110, 0.3);
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-align: center;
+  background: linear-gradient(135deg, #c9a96e, #b8860b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 4px 20px rgba(201, 169, 110, 0.35));
 }
 
 @media (max-width: 480px) {
@@ -78,9 +67,7 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
 
-  .registry-button {
-    font-size: 1rem;
-    padding: 0.75rem 2rem;
-    white-space: nowrap;
+  .congrats-text {
+    padding: 1rem 1rem 0;
   }
 }
