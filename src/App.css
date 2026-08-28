@@ -7,10 +7,10 @@
   gap: 2.5rem;
   padding: 3rem 1.5rem;
   background:
-    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(201, 162, 39, 0.08), transparent 60%),
-    radial-gradient(ellipse 100% 100% at 50% 110%, rgba(0, 0, 0, 0.6), transparent 55%),
-    #14120f;
-  color: #e8e2d5;
+    radial-gradient(ellipse 120% 80% at 50% -10%, rgba(201, 162, 39, 0.1), transparent 60%),
+    radial-gradient(ellipse 140% 70% at 50% 115%, rgba(22, 74, 92, 0.55), transparent 60%),
+    linear-gradient(180deg, #10151a 0%, #0e1e26 100%);
+  color: #e4e6dc;
   font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
   text-align: center;
 }
@@ -67,18 +67,17 @@
 .rule {
   width: 4.5rem;
   height: 1px;
-  background: linear-gradient(90deg, transparent, #a8925a);
+  background: linear-gradient(90deg, transparent, #6fa3ad);
 }
 
 .rule:last-child {
-  background: linear-gradient(90deg, #a8925a, transparent);
+  background: linear-gradient(90deg, #6fa3ad, transparent);
 }
 
-.diamond {
-  width: 7px;
-  height: 7px;
-  background: #c9a95e;
-  transform: rotate(45deg);
+.wave {
+  font-size: 1.125rem;
+  line-height: 1;
+  color: #c9a95e;
 }
 
 .subhead {
@@ -87,6 +86,60 @@
   font-style: italic;
   font-weight: 500;
   color: #c9a95e;
+}
+
+.subhead strong {
+  font-weight: 600;
+  color: #e8cf8f;
+}
+
+.proclamation {
+  margin: 0.375rem 0 0;
+  font-size: clamp(1.125rem, 2.75vw, 1.5rem);
+  font-style: italic;
+  color: #b8c4b8;
+}
+
+.initiates {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  margin: 1.75rem 0 0;
+}
+
+.plaque {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  padding: 1rem 1.75rem;
+  border: 1px solid rgba(201, 169, 94, 0.45);
+  outline: 1px solid rgba(111, 163, 173, 0.25);
+  outline-offset: 4px;
+  border-radius: 2px;
+  background: rgba(20, 34, 40, 0.5);
+}
+
+.plaque-name {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: #f3ecdd;
+}
+
+.plaque-title {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #8fb0a8;
+}
+
+.rite {
+  margin: 1.5rem 0 0;
+  font-size: 0.9375rem;
+  font-style: italic;
+  letter-spacing: 0.08em;
+  color: #9c9483;
 }
 
 .statue {
@@ -104,12 +157,12 @@
   max-height: min(68vh, 42rem);
   max-width: min(86vw, 24rem);
   border: 1px solid rgba(201, 169, 94, 0.55);
-  outline: 1px solid rgba(201, 169, 94, 0.2);
+  outline: 1px solid rgba(111, 163, 173, 0.3);
   outline-offset: 6px;
   border-radius: 2px;
   box-shadow:
     0 24px 60px rgba(0, 0, 0, 0.6),
-    0 4px 16px rgba(0, 0, 0, 0.5);
+    0 4px 16px rgba(6, 32, 40, 0.55);
 }
 
 .caption {
@@ -118,12 +171,52 @@
   color: #9c9483;
 }
 
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 62rem;
+}
+
+.gallery-overline {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #a89468;
+}
+
+.artwork {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.artwork-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: min(88vw, 54rem);
+  border: 1px solid rgba(201, 169, 94, 0.55);
+  outline: 1px solid rgba(111, 163, 173, 0.3);
+  outline-offset: 6px;
+  border-radius: 2px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.6),
+    0 4px 16px rgba(6, 32, 40, 0.55);
+}
+
 .footer {
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 0.6875rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: #6d6552;
+  color: #6d7a6d;
 }
 
 @media (min-width: 1024px) {
@@ -147,6 +240,10 @@
     margin-left: 0;
   }
 
+  .initiates {
+    justify-content: flex-start;
+  }
+
   .statue-image {
     max-height: min(66vh, 44rem);
   }
@@ -161,6 +258,17 @@
   .overline {
     font-size: 0.6875rem;
     letter-spacing: 0.28em;
+  }
+
+  .initiates {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.875rem;
+  }
+
+  .plaque {
+    width: 100%;
+    max-width: 18rem;
   }
 
   .statue-image {
