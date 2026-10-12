@@ -55,7 +55,10 @@ export default function SiteNavigation({ page, onNavigate }) {
       <nav id="site-menu" className="site-menu" aria-label="Main navigation" hidden={!open}>
         <p className="menu-overline">The Order’s Archives</p>
         <a href="#" aria-current={page === 'home' ? 'page' : undefined} onClick={(event) => selectPage('home', event)}>
-          <span>Home</span><span className="menu-note">Mani Waters MMXXVI</span>
+          <span>Home</span><span className="menu-note">The Custodian</span>
+        </a>
+        <a href="#maniwaters" aria-current={page === 'maniwaters' ? 'page' : undefined} onClick={(event) => selectPage('maniwaters', event)}>
+          <span>Mani Waters</span><span className="menu-note">MMXXVI</span>
         </a>
         <a href="#mattmurphy" aria-current={page === 'mattmurphy' ? 'page' : undefined} onClick={(event) => selectPage('mattmurphy', event)}>
           <span>MattMurphy</span><span className="menu-note">The Buffalo File</span>

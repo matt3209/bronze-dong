@@ -9,6 +9,20 @@
 }
 
 .skip-link:focus { top: 0.5rem; }
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.site-shell { min-height: 100dvh; display: flex; flex-direction: column; }
+.page-content, .page-view { flex: 1; display: flex; flex-direction: column; }
+.page-view[hidden] { display: none; }
 .page-content:focus { outline: none; }
 .site-header {
   position: relative;
@@ -132,6 +146,23 @@
   content: '';
   flex: 1;
 }
+
+.statue-home {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  justify-items: center;
+  padding: 2rem 1.5rem;
+  gap: 1.5rem;
+}
+.statue-home::before, .statue-home::after { content: none; }
+.statue-home .statue { align-self: center; }
+.statue-home .statue-image { max-height: min(62dvh, 44rem); max-width: min(80vw, 24rem); }
+.statue-home .footer { line-height: 1.8; }
+.mani-waters-hero .masthead { max-width: 46rem; text-align: center; }
+.mani-waters-hero .ornament { justify-content: center; margin-left: auto; }
+.mani-waters-hero .initiates { justify-content: center; }
 
 .hero {
   display: flex;
