@@ -1,3 +1,114 @@
+.skip-link {
+  position: absolute;
+  top: -5rem;
+  left: 1rem;
+  z-index: 30;
+  padding: 0.75rem 1rem;
+  background: #eee7d7;
+  color: #25373b;
+}
+
+.skip-link:focus { top: 0.5rem; }
+.page-content:focus { outline: none; }
+.site-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.875rem clamp(1.25rem, 4vw, 3rem);
+  border-bottom: 1px solid rgba(201, 169, 94, 0.25);
+  background: #10181d;
+  color: #e8cf8f;
+}
+
+.site-wordmark {
+  padding: 0.5rem 0;
+  min-height: 44px;
+  font: 500 clamp(1.25rem, 4vw, 1.5rem)/1.5 'Playfair Display', Georgia, serif;
+  text-decoration: none;
+  color: #f3ecdd;
+}
+.site-wordmark > span { color: #c9a95e; }
+.site-wordmark .wordmark-domain { font-size: 0.8em; color: #a1b6b5; }
+.menu-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.625rem;
+  border: 1px solid #52615c;
+  background: transparent;
+  color: #e8cf8f;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.menu-label { font: 0.75rem/1.5 system-ui, sans-serif; letter-spacing: 0.12em; text-transform: uppercase; }
+.menu-toggle:hover { background: #203039; border-color: #c9a95e; }
+.site-menu {
+  position: absolute;
+  top: calc(100% - 0.25rem);
+  right: clamp(1.25rem, 4vw, 3rem);
+  width: min(20rem, calc(100vw - 2.5rem));
+  padding: 1rem;
+  border: 1px solid #7b704e;
+  background: #17242a;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+.menu-overline { margin: 0.25rem 0.75rem 0.75rem; font: 0.6875rem/1.6 system-ui, sans-serif; color: #adbaad; letter-spacing: 0.12em; text-transform: uppercase; }
+.site-menu a {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.875rem 0.75rem;
+  color: #f3ecdd;
+  text-decoration: none;
+  font: 500 1.25rem/1.4 'Playfair Display', Georgia, serif;
+  transition: background 180ms ease;
+}
+.site-menu a:hover, .site-menu a[aria-current='page'] { background: #29383a; }
+.menu-note { color: #b5c2b8; font: 0.75rem/1.5 system-ui, sans-serif; }
+.site-wordmark:focus-visible, .menu-toggle:focus-visible, .site-menu a:focus-visible { outline: 2px solid #e8cf8f; outline-offset: 4px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-toggle, .site-menu a { transition: none; }
+}
+
+.somewhere-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 3.5rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(201, 169, 94, 0.45);
+  background: #1d2326;
+  color: #e8cf8f;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+}
+
+.somewhere-wordmark {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.somewhere-link:hover {
+  background: #283135;
+  color: #f3ecdd;
+}
+
+.somewhere-link:focus-visible {
+  outline: 2px solid #e8cf8f;
+  outline-offset: -4px;
+}
+
 .app {
   min-height: 100vh;
   min-height: 100dvh;
