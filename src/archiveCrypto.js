@@ -40,6 +40,7 @@ export function validateArchive(archive) {
   archive.sources.forEach((source) => {
     if (source.url !== null && (typeof source.url !== 'string'
       || !['https:', 'http:'].includes(new URL(source.url).protocol))) throw new Error('Invalid archive source URL')
+    if (source.excerpt !== undefined && typeof source.excerpt !== 'string') throw new Error('Invalid archive source excerpt')
   })
   const referencedEntries = [...archive.highlights, ...archive.events, ...archive.national]
   if (archive.records !== undefined) {
@@ -47,6 +48,16 @@ export function validateArchive(archive) {
     archive.records.forEach((entry) => {
       requireStrings(entry, ['id', 'date', 'title', 'division', 'result'])
       requireStringArray(entry, 'partners')
+      if (entry.dateStart !== undefined && (typeof entry.dateStart !== 'string'
+        || !/^\d{4}-\d{2}-\d{2}$/.test(entry.dateStart)
+        || !Number.isFinite(Date.parse(entry.dateStart))
+        || new Date(entry.dateStart).toISOString().slice(0, 10) !== entry.dateStart)) {
+        throw new Error('Invalid tournament start date')
+      }
+      if (entry.table !== undefined) {
+        requireStrings(entry.table, ['mattSpeaker', 'partnerSpeaker', 'place', 'placeDetail', 'record', 'recordDetail'])
+        requireStringArray(entry.table, 'speakerAwards')
+      }
     })
     if (new Set(archive.records.map((entry) => entry.id)).size !== archive.records.length) {
       throw new Error('Duplicate tournament record IDs')

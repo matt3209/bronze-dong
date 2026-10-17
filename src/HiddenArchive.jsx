@@ -9,14 +9,67 @@ const formatDate = (value) => new Intl.DateTimeFormat('en-US', {
 function SourceLinks({ ids, sources }) {
   return <div className="archive-source-links">{ids.map((id) => {
     const source = sources.find((entry) => entry.id === id)
-    return source && (source.url
-      ? <a key={id} href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>
-      : <span className="archive-source-label" key={id}>{source.title}</span>)
+    return source && <div className="archive-source" key={id}>
+      {source.excerpt && <>
+        <p className="archive-source-title">{source.title}</p>
+        <blockquote>{source.excerpt}</blockquote>
+        <p className="archive-source-locator">{source.locator}</p>
+      </>}
+      {source.url
+        ? <a href={source.url} target="_blank" rel="noreferrer">{source.excerpt ? 'Archive metadata' : source.title} ↗</a>
+        : <span className="archive-source-label">{source.title}</span>}
+    </div>
   })}</div>
+}
+
+function RecordedValue({ value }) {
+  return value || <span className="archive-missing" aria-label="Not documented">—</span>
+}
+
+function TournamentRow({ record, sources }) {
+  const result = record.table || { record: record.result }
+  const sourceDialogRef = useRef(null)
+
+  return (
+    <tr className={result.place === '1st' ? 'archive-result--winner' : undefined}>
+      <td className="archive-table__date">{record.date}</td>
+      <th className="archive-table__tournament" scope="row">
+        <span>{record.title}</span>
+        <span className="archive-table__secondary">{record.division}</span>
+      </th>
+      <td><RecordedValue value={record.partners.join(' & ')} /></td>
+      <td className="archive-table__position"><RecordedValue value={result.mattSpeaker} /></td>
+      <td className="archive-table__position"><RecordedValue value={result.partnerSpeaker} /></td>
+      <td className="archive-table__place">
+        <RecordedValue value={result.place} />
+        {result.placeDetail && <span className="archive-table__secondary">{result.placeDetail}</span>}
+      </td>
+      <td className="archive-table__record">
+        <RecordedValue value={result.record} />
+        {result.recordDetail && <span className="archive-table__secondary">{result.recordDetail}</span>}
+      </td>
+      <td><RecordedValue value={result.speakerAwards?.join('; ')} /></td>
+      <td className="archive-table__sources">
+        <button type="button" className="archive-source-button" aria-haspopup="dialog"
+          aria-label={`Sources for ${record.title}, ${record.date}`}
+          onClick={() => sourceDialogRef.current?.showModal()}>Sources</button>
+        <dialog className="archive-sources-dialog" ref={sourceDialogRef} aria-label={`Sources for ${record.title}, ${record.date}`}>
+          <div className="archive-sources-dialog__header">
+            <h3>{record.title}<span>{record.date}</span></h3>
+            <button type="button" className="archive-lock-button" onClick={() => sourceDialogRef.current?.close()}>Close</button>
+          </div>
+          <SourceLinks ids={record.sourceIds} sources={sources} />
+        </dialog>
+      </td>
+    </tr>
+  )
 }
 
 function ArchiveContent({ archive, onLock }) {
   const titleRef = useRef(null)
+  const records = archive.records.every((record) => record.dateStart)
+    ? [...archive.records].sort((first, second) => first.dateStart.localeCompare(second.dateStart))
+    : archive.records
   useEffect(() => { titleRef.current?.focus() }, [])
 
   return (
@@ -28,22 +81,31 @@ function ArchiveContent({ archive, onLock }) {
       <header className="archive-header">
         <h1 className="archive-title" tabIndex={-1} ref={titleRef}>{archive.title}</h1>
         <p className="archive-subtitle">{archive.subtitle}</p>
-        <p className="archive-summary">The NSDA points history is incomplete.</p>
+        <p className="archive-summary">The NSDA points history is incomplete. Only documented results appear here.</p>
       </header>
       <section className="archive-section" aria-labelledby="archive-results">
         <h2 className="archive-section-heading" id="archive-results">Tournament results</h2>
-        <div className="archive-timeline">{archive.records.map((record) => (
-          <section className="archive-event" key={record.id}>
-            <div className="archive-event__date">{record.date}</div>
-            <div className="archive-event__body">
-              <h3>{record.title}</h3>
-              {record.division && <p className="archive-event__meta">{record.division}</p>}
-              {record.partners.length > 0 && <p>{record.partners.length === 1 ? 'Partner' : 'Partners'}: <strong>{record.partners.join(' & ')}</strong></p>}
-              <p className="archive-event__result">{record.result}</p>
-              <SourceLinks ids={record.sourceIds} sources={archive.sources} />
-            </div>
-          </section>
-        ))}</div>
+        <p className="archive-table-key" id="archive-table-key">— Not documented. “Entry list” identifies a registered pairing, not a completed result.</p>
+        <p className="archive-table-scroll-hint" id="archive-scroll-hint">Scroll sideways to see every column.</p>
+        <div className="archive-table-scroll" role="region" aria-label="Tournament results grid" aria-describedby="archive-table-key archive-scroll-hint" tabIndex={0}>
+          <table className="archive-results-table">
+            <caption className="visually-hidden">Tournament records in date order. Events without an exact date retain their documented season.</caption>
+            <colgroup>
+              <col className="archive-column-date" /><col className="archive-column-tournament" />
+              <col className="archive-column-partner" /><col className="archive-column-position" />
+              <col className="archive-column-position" /><col className="archive-column-place" />
+              <col className="archive-column-record" /><col className="archive-column-awards" />
+              <col className="archive-column-sources" />
+            </colgroup>
+            <thead><tr>
+              <th scope="col">Date</th><th scope="col">Tournament / division</th><th scope="col">Partner</th>
+              <th scope="col">Matt’s position</th><th scope="col">Partner’s position</th>
+              <th scope="col">Place / finish</th><th scope="col">W–L record</th>
+              <th scope="col">Speaker awards</th><th scope="col">Sources</th>
+            </tr></thead>
+            <tbody>{records.map((record) => <TournamentRow key={record.id} record={record} sources={archive.sources} />)}</tbody>
+          </table>
+        </div>
       </section>
     </article>
   )
