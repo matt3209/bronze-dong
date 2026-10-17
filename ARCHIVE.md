@@ -19,6 +19,18 @@ npm run archive:update
 npm run build
 ```
 
+The optional `pointsHistory` section preserves incomplete membership-ledger rows
+separately from tournament result packets. Keep blank records blank, retain entry
+dates and coach attribution, and flag conflicts without double-counting an event.
+Its total covers only the supplied rows, never the full career. A source without a
+public URL uses `url: null` and appears as a text citation rather than a fabricated link.
+
+The page displays only the factual `records` list: one item per tournament, with
+the date, format, known partner, result, and source. Research notes and the raw
+points ledger remain in the encrypted working data but are not displayed. Merge
+matching state/ledger events rather than duplicating them; retain conflicting
+reported results in the same item without guessing a resolution.
+
 The update command encrypts the content with a new random salt and IV and verifies
 that it decrypts before writing `public/hidden-archive.json`. Publish that encrypted
 file with the site changes through the existing deployment workflow. A normal build

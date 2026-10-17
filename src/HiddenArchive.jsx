@@ -9,7 +9,9 @@ const formatDate = (value) => new Intl.DateTimeFormat('en-US', {
 function SourceLinks({ ids, sources }) {
   return <div className="archive-source-links">{ids.map((id) => {
     const source = sources.find((entry) => entry.id === id)
-    return source && <a key={id} href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>
+    return source && (source.url
+      ? <a key={id} href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>
+      : <span className="archive-source-label" key={id}>{source.title}</span>)
   })}</div>
 }
 
@@ -24,87 +26,24 @@ function ArchiveContent({ archive, onLock }) {
         <button className="archive-lock-button" type="button" onClick={onLock}>Lock archive</button>
       </div>
       <header className="archive-header">
-        <p className="archive-eyebrow">Personal archive · Research in progress</p>
         <h1 className="archive-title" tabIndex={-1} ref={titleRef}>{archive.title}</h1>
         <p className="archive-subtitle">{archive.subtitle}</p>
-        <div className="archive-summary">{archive.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
+        <p className="archive-summary">The NSDA points history is incomplete.</p>
       </header>
-      <nav className="archive-jump-links" aria-label="Archive sections">
-        <a href="#career-record" onClick={(event) => { event.preventDefault(); document.getElementById('career-record')?.scrollIntoView() }}>Career record</a>
-        <a href="#archive-recollections" onClick={(event) => { event.preventDefault(); document.getElementById('archive-recollections')?.scrollIntoView() }}>Recollections</a>
-        <a href="#archive-sources" onClick={(event) => { event.preventDefault(); document.getElementById('archive-sources')?.scrollIntoView() }}>Sources</a>
-        <a href="#archive-progress" onClick={(event) => { event.preventDefault(); document.getElementById('archive-progress')?.scrollIntoView() }}>Research progress</a>
-      </nav>
-      <section className="archive-section" aria-labelledby="archive-highlights-title">
-        <h2 className="archive-section-heading" id="archive-highlights-title">Documented highlights</h2>
-        <div className="archive-highlights">{archive.highlights.map((highlight) => (
-          <div className="archive-highlight" key={highlight.title}>
-            <h3>{highlight.title}</h3><p>{highlight.detail}</p>
-            <SourceLinks ids={highlight.sourceIds} sources={archive.sources} />
-          </div>
-        ))}</div>
-      </section>
-      <section className="archive-section" aria-labelledby="career-record">
-        <h2 className="archive-section-heading" id="career-record">Career record</h2>
-        <div className="archive-timeline">{archive.events.map((event) => (
-          <section className="archive-event" key={event.id}>
-            <div className="archive-event__date"><span>{event.season}</span><p>{event.date}</p></div>
+      <section className="archive-section" aria-labelledby="archive-results">
+        <h2 className="archive-section-heading" id="archive-results">Tournament results</h2>
+        <div className="archive-timeline">{archive.records.map((record) => (
+          <section className="archive-event" key={record.id}>
+            <div className="archive-event__date">{record.date}</div>
             <div className="archive-event__body">
-              <h3>{event.title}</h3>
-              <p className="archive-event__meta">{event.division} · {event.location}</p>
-              <p>Partner: <strong>{event.partners.join(' & ')}</strong></p>
-              <p className="archive-event__result">{event.result}</p>
-              <p className="archive-event__rounds">{event.rounds}</p>
-              <ul className="archive-event__notes">{event.notes.map((note) => <li key={note}>{note}</li>)}</ul>
-              <SourceLinks ids={event.sourceIds} sources={archive.sources} />
+              <h3>{record.title}</h3>
+              {record.division && <p className="archive-event__meta">{record.division}</p>}
+              {record.partners.length > 0 && <p>{record.partners.length === 1 ? 'Partner' : 'Partners'}: <strong>{record.partners.join(' & ')}</strong></p>}
+              <p className="archive-event__result">{record.result}</p>
+              <SourceLinks ids={record.sourceIds} sources={archive.sources} />
             </div>
           </section>
         ))}</div>
-      </section>
-      <section className="archive-section" aria-labelledby="archive-recollections">
-        <h2 className="archive-section-heading" id="archive-recollections">Recollections</h2>
-        <div className="archive-memory-list">{archive.recollections.map((memory) => (
-          <div className="archive-memory" key={memory.title}>
-            <span className="archive-status">{memory.status}</span>
-            <h3>{memory.title}</h3><p>{memory.detail}</p>
-          </div>
-        ))}</div>
-      </section>
-      <section className="archive-section" aria-labelledby="archive-national-title">
-        <h2 className="archive-section-heading" id="archive-national-title">National competition</h2>
-        <div className="archive-national-list">{archive.national.map((entry) => (
-          <div className="archive-national-item" key={entry.title}>
-            <h3>{entry.title}</h3><p>{entry.detail}</p>
-            <SourceLinks ids={entry.sourceIds} sources={archive.sources} />
-          </div>
-        ))}</div>
-      </section>
-      <section className="archive-section" aria-labelledby="archive-sources">
-        <h2 className="archive-section-heading" id="archive-sources">Original records and archive leads</h2>
-        <ol className="archive-source-list">{archive.sources.map((source) => (
-          <li className="archive-source" id={`source-${source.id}`} key={source.id}>
-            <a href={source.url} target="_blank" rel="noreferrer">{source.title} ↗</a>
-            <p className="archive-source__locator">{source.locator}</p>
-            <p>{source.note}</p>
-          </li>
-        ))}</ol>
-      </section>
-      <section className="archive-section" aria-labelledby="archive-progress">
-        <h2 className="archive-section-heading" id="archive-progress">Research progress</h2>
-        <div className="archive-progress-list">{archive.researchLog.map((entry) => (
-          <div className="archive-progress" key={entry.title}>
-            <span className="archive-status">{entry.status}</span>
-            <h3>{entry.title}</h3><p>{entry.detail}</p>
-          </div>
-        ))}</div>
-        <h3>Next records to recover</h3>
-        <ul className="archive-next-list">{archive.nextSteps.map((entry) => (
-          <li key={entry.title}><strong>{entry.title}.</strong> {entry.detail}</li>
-        ))}</ul>
-      </section>
-      <section className="archive-section archive-methodology" aria-labelledby="archive-method-title">
-        <h2 className="archive-section-heading" id="archive-method-title">How to read these records</h2>
-        {archive.methodology.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       </section>
     </article>
   )

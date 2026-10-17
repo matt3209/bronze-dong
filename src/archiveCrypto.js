@@ -27,7 +27,7 @@ export function validateArchive(archive) {
     events: ['id', 'date', 'season', 'title', 'division', 'location', 'result', 'rounds'],
     recollections: ['title', 'detail', 'status'],
     national: ['title', 'detail'],
-    sources: ['id', 'title', 'url', 'locator', 'note'],
+    sources: ['id', 'title', 'locator', 'note'],
     researchLog: ['date', 'title', 'detail', 'status'],
     nextSteps: ['title', 'detail'],
   }
@@ -38,9 +38,39 @@ export function validateArchive(archive) {
   const sourceIds = new Set(archive.sources.map((source) => source.id))
   if (sourceIds.size !== archive.sources.length) throw new Error('Duplicate archive source IDs')
   archive.sources.forEach((source) => {
-    if (!['https:', 'http:'].includes(new URL(source.url).protocol)) throw new Error('Invalid archive source URL')
+    if (source.url !== null && (typeof source.url !== 'string'
+      || !['https:', 'http:'].includes(new URL(source.url).protocol))) throw new Error('Invalid archive source URL')
   })
-  for (const entry of [...archive.highlights, ...archive.events, ...archive.national]) {
+  const referencedEntries = [...archive.highlights, ...archive.events, ...archive.national]
+  if (archive.records !== undefined) {
+    if (!Array.isArray(archive.records)) throw new Error('Invalid tournament records')
+    archive.records.forEach((entry) => {
+      requireStrings(entry, ['id', 'date', 'title', 'division', 'result'])
+      requireStringArray(entry, 'partners')
+    })
+    if (new Set(archive.records.map((entry) => entry.id)).size !== archive.records.length) {
+      throw new Error('Duplicate tournament record IDs')
+    }
+    referencedEntries.push(...archive.records)
+  }
+  if (archive.pointsHistory !== undefined) {
+    const history = archive.pointsHistory
+    requireStrings(history, ['title', 'intro'])
+    if (!Array.isArray(history.entries)) throw new Error('Invalid points history entries')
+    history.entries.forEach((entry) => {
+      requireStrings(entry, ['id', 'description', 'date', 'category', 'result', 'enteredOn', 'coach'])
+      if (!Number.isSafeInteger(entry.points) || entry.points < 0) throw new Error('Invalid points history value')
+    })
+    if (new Set(history.entries.map((entry) => entry.id)).size !== history.entries.length) {
+      throw new Error('Duplicate points history IDs')
+    }
+    const total = history.entries.reduce((sum, entry) => sum + entry.points, 0)
+    if (!Number.isSafeInteger(history.total) || !Number.isSafeInteger(total) || history.total !== total) {
+      throw new Error('Invalid points history total')
+    }
+    referencedEntries.push(history)
+  }
+  for (const entry of referencedEntries) {
     requireStringArray(entry, 'sourceIds')
     if (entry.sourceIds.some((id) => !sourceIds.has(id))) throw new Error('Unknown archive source reference')
   }
