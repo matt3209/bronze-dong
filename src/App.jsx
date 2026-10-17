@@ -4,6 +4,7 @@ import hero from './assets/hero.png'
 import SiteNavigation from './SiteNavigation'
 import MattMurphy from './MattMurphy'
 import ManiWaters from './ManiWaters'
+import HiddenArchive from './HiddenArchive'
 
 function HomePage() {
   return (
@@ -29,12 +30,14 @@ function HomePage() {
 const pageFromHash = () => ({
   '#mattmurphy': 'mattmurphy',
   '#maniwaters': 'maniwaters',
+  '#hidden': 'hidden',
 })[window.location.hash] || 'home'
 
 const pageTitles = {
   home: 'BRONZEDONGS.COM · THE BRONZE DONG',
   maniwaters: 'BRONZEDONGS.COM · MANI WATERS MMXXVI',
   mattmurphy: 'MattMurphy · The Buffalo File · BRONZEDONGS.COM',
+  hidden: 'Hidden · BRONZEDONGS.COM',
 }
 
 function App() {
@@ -85,6 +88,7 @@ function App() {
         <div className="page-view" hidden={page !== 'home'}><HomePage /></div>
         <div className="page-view" hidden={page !== 'maniwaters'}><ManiWaters onNavigate={navigateTo} /></div>
         <div className="page-view" hidden={page !== 'mattmurphy'}><MattMurphy onNavigate={navigateTo} /></div>
+        {page === 'hidden' && <HiddenArchive />}
       </main>
     </div>
   )

@@ -63,6 +63,9 @@ export default function SiteNavigation({ page, onNavigate }) {
         <a href="#mattmurphy" aria-current={page === 'mattmurphy' ? 'page' : undefined} onClick={(event) => selectPage('mattmurphy', event)}>
           <span>MattMurphy</span><span className="menu-note">The Buffalo File</span>
         </a>
+        <a href="#hidden" aria-current={page === 'hidden' ? 'page' : undefined} onClick={(event) => selectPage('hidden', event)}>
+          <span>Hidden</span>
+        </a>
       </nav>
     </header>
   )
