@@ -217,6 +217,9 @@
 .archive-source-links a,
 .archive-source-label { display: inline-flex; align-items: center; min-height: 44px; font-size: 0.8125rem; overflow-wrap: anywhere; }
 .archive-source-label { color: var(--archive-muted); }
+.archive-photo-albums { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--archive-rule); }
+.archive-photo-albums h3 { margin: 1rem 0 0.25rem; font: 600 0.9375rem/1.5 system-ui, sans-serif; }
+.archive-photo-albums p { margin-bottom: 0.25rem; color: var(--archive-muted); font-size: 0.8125rem; }
 .archive-page :focus-visible,
 .hidden-gate :focus-visible { outline: 2px solid #e8cf8f; outline-offset: 3px; }
 

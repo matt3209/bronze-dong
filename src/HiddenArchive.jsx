@@ -107,6 +107,14 @@ function ArchiveContent({ archive, onLock }) {
           </table>
         </div>
       </section>
+      {archive.photoAlbums?.length > 0 && <section className="archive-photo-albums" aria-labelledby="archive-photo-albums">
+        <h2 className="archive-section-heading" id="archive-photo-albums">Photo albums to review</h2>
+        {archive.photoAlbums.map((album) => <div key={album.id}>
+          <h3>{album.title}</h3>
+          <p>{album.description}</p>
+          <SourceLinks ids={album.sourceIds} sources={archive.sources} />
+        </div>)}
+      </section>}
     </article>
   )
 }

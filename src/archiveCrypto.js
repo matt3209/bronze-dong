@@ -43,6 +43,14 @@ export function validateArchive(archive) {
     if (source.excerpt !== undefined && typeof source.excerpt !== 'string') throw new Error('Invalid archive source excerpt')
   })
   const referencedEntries = [...archive.highlights, ...archive.events, ...archive.national]
+  if (archive.photoAlbums !== undefined) {
+    if (!Array.isArray(archive.photoAlbums)) throw new Error('Invalid photo albums')
+    archive.photoAlbums.forEach((entry) => requireStrings(entry, ['id', 'title', 'description']))
+    if (new Set(archive.photoAlbums.map((entry) => entry.id)).size !== archive.photoAlbums.length) {
+      throw new Error('Duplicate photo album IDs')
+    }
+    referencedEntries.push(...archive.photoAlbums)
+  }
   if (archive.records !== undefined) {
     if (!Array.isArray(archive.records)) throw new Error('Invalid tournament records')
     archive.records.forEach((entry) => {

@@ -48,6 +48,11 @@ Research notes and the raw points ledger remain encrypted but are not displayed.
 Merge matching state/ledger events rather than duplicating them; retain conflicting
 reported results in the same row without guessing a resolution.
 
+Optional `photoAlbums` entries contain `id`, `title`, `description`, and `sourceIds`.
+Their source links appear below the tournament grid only after unlocking. Label
+albums awaiting the owner's review separately from photos confirmed to include
+Matt; a gallery link or face resemblance does not establish who is pictured.
+
 The update command encrypts the content with a new random salt and IV and verifies
 that it decrypts before writing `public/hidden-archive.json`. Publish that encrypted
 file with the site changes through the existing deployment workflow. A normal build
