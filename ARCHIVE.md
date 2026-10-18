@@ -25,7 +25,8 @@ dates and coach attribution, and flag conflicts without double-counting an event
 Its total covers only the supplied rows, never the full career. A source without a
 public URL uses `url: null` and appears as a text citation rather than a fabricated link.
 An optional plain-text `source.excerpt` appears in the row's Sources dialog with
-the existing locator and an archive-metadata link. Keep excerpts short and verbatim;
+the existing locator and an archive link. Optional `source.linkLabel` sets that link's
+nonempty plain-text label; it defaults to **Archive metadata**. Keep excerpts short and verbatim;
 never render archived HTML or scripts, and distinguish an index record from the
 original article. Source dialogs remain inside the unlocked archive.
 

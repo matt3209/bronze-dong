@@ -16,7 +16,7 @@ function SourceLinks({ ids, sources }) {
         <p className="archive-source-locator">{source.locator}</p>
       </>}
       {source.url
-        ? <a href={source.url} target="_blank" rel="noreferrer">{source.excerpt ? 'Archive metadata' : source.title} ↗</a>
+        ? <a href={source.url} target="_blank" rel="noreferrer">{source.excerpt ? (source.linkLabel || 'Archive metadata') : source.title} ↗</a>
         : <span className="archive-source-label">{source.title}</span>}
     </div>
   })}</div>

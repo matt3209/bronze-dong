@@ -41,6 +41,9 @@ export function validateArchive(archive) {
     if (source.url !== null && (typeof source.url !== 'string'
       || !['https:', 'http:'].includes(new URL(source.url).protocol))) throw new Error('Invalid archive source URL')
     if (source.excerpt !== undefined && typeof source.excerpt !== 'string') throw new Error('Invalid archive source excerpt')
+    if (source.linkLabel !== undefined && (typeof source.linkLabel !== 'string' || !source.linkLabel.trim())) {
+      throw new Error('Invalid archive source link label')
+    }
   })
   const referencedEntries = [...archive.highlights, ...archive.events, ...archive.national]
   if (archive.photoAlbums !== undefined) {
