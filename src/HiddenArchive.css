@@ -120,7 +120,7 @@
 }
 .archive-results-table {
   width: 100%;
-  min-width: 1240px;
+  min-width: 1450px;
   border-spacing: 0;
   table-layout: fixed;
   font-size: 0.875rem;
@@ -132,6 +132,7 @@
 .archive-column-position { width: 90px; }
 .archive-column-place { width: 140px; }
 .archive-column-record { width: 185px; }
+.archive-column-statistics { width: 210px; }
 .archive-column-awards { width: 150px; }
 .archive-column-sources { width: 105px; }
 .archive-results-table th,
@@ -177,6 +178,7 @@
 .archive-table__position,
 .archive-table__record { font-variant-numeric: tabular-nums; }
 .archive-table__record { font-weight: 600; white-space: pre-line; }
+.archive-table__statistics { white-space: pre-line; font-variant-numeric: tabular-nums; }
 .archive-table__place { font-weight: 600; }
 .archive-result--winner .archive-table__place { color: #e8cf8f; }
 .archive-missing { color: #a1b0ae; font-weight: 400; }

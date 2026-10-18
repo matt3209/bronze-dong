@@ -68,6 +68,7 @@ export function validateArchive(archive) {
       if (entry.table !== undefined) {
         requireStrings(entry.table, ['mattSpeaker', 'partnerSpeaker', 'place', 'placeDetail', 'record', 'recordDetail'])
         requireStringArray(entry.table, 'speakerAwards')
+        if (entry.table.speakerStats !== undefined) requireStringArray(entry.table, 'speakerStats')
       }
     })
     if (new Set(archive.records.map((entry) => entry.id)).size !== archive.records.length) {

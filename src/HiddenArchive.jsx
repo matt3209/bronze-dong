@@ -48,6 +48,7 @@ function TournamentRow({ record, sources }) {
         <RecordedValue value={result.record} />
         {result.recordDetail && <span className="archive-table__secondary">{result.recordDetail}</span>}
       </td>
+      <td className="archive-table__statistics"><RecordedValue value={result.speakerStats?.join('\n')} /></td>
       <td><RecordedValue value={result.speakerAwards?.join('; ')} /></td>
       <td className="archive-table__sources">
         <button type="button" className="archive-source-button" aria-haspopup="dialog"
@@ -85,7 +86,7 @@ function ArchiveContent({ archive, onLock }) {
       </header>
       <section className="archive-section" aria-labelledby="archive-results">
         <h2 className="archive-section-heading" id="archive-results">Tournament results</h2>
-        <p className="archive-table-key" id="archive-table-key">— Not documented. “Entry list” identifies a registered pairing, not a completed result.</p>
+        <p className="archive-table-key" id="archive-table-key">— Not documented. “Entry list” identifies a registered pairing, not a completed result. Speaker statistics are published standings and points, not awards or speaking positions.</p>
         <p className="archive-table-scroll-hint" id="archive-scroll-hint">Scroll sideways to see every column.</p>
         <div className="archive-table-scroll" role="region" aria-label="Tournament results grid" aria-describedby="archive-table-key archive-scroll-hint" tabIndex={0}>
           <table className="archive-results-table">
@@ -94,14 +95,15 @@ function ArchiveContent({ archive, onLock }) {
               <col className="archive-column-date" /><col className="archive-column-tournament" />
               <col className="archive-column-partner" /><col className="archive-column-position" />
               <col className="archive-column-position" /><col className="archive-column-place" />
-              <col className="archive-column-record" /><col className="archive-column-awards" />
+              <col className="archive-column-record" /><col className="archive-column-statistics" />
+              <col className="archive-column-awards" />
               <col className="archive-column-sources" />
             </colgroup>
             <thead><tr>
               <th scope="col">Date</th><th scope="col">Tournament / division</th><th scope="col">Partner</th>
               <th scope="col">Matt’s position</th><th scope="col">Partner’s position</th>
               <th scope="col">Place / finish</th><th scope="col">W–L record</th>
-              <th scope="col">Speaker awards</th><th scope="col">Sources</th>
+              <th scope="col">Speaker statistics</th><th scope="col">Speaker awards</th><th scope="col">Sources</th>
             </tr></thead>
             <tbody>{records.map((record) => <TournamentRow key={record.id} record={record} sources={archive.sources} />)}</tbody>
           </table>
