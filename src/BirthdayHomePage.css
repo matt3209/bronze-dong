@@ -116,8 +116,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 7rem;
-  height: 7rem;
+  gap: .4rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  padding: .75rem;
+  text-align: center;
   border: 1px solid var(--birthday-teal);
   outline: 5px solid var(--birthday-gold);
   border-radius: 50%;
@@ -125,8 +128,8 @@
   background: var(--birthday-gold);
   transform: rotate(12deg);
 }
-.birthday-seal span { font: 600 .5rem/1.5 system-ui, sans-serif; letter-spacing: .1em; }
-.birthday-seal strong { font: italic 500 3.4rem/1 'Playfair Display', Georgia, serif; }
+.birthday-seal > span { display: block; flex: none; font: 600 .52rem/1.2 system-ui, sans-serif; letter-spacing: .1em; white-space: nowrap; }
+.birthday-seal > strong { display: block; flex: none; position: relative; top: -.1em; font: italic 500 3.2rem/1.1 'Playfair Display', Georgia, serif; }
 .birthday-footer {
   display: flex;
   justify-content: space-between;
@@ -173,9 +176,9 @@
   .birthday-gift strong { font-size: 1rem; }
   .birthday-wish { margin-inline: auto; font-size: .75rem; }
   .birthday-photo { width: 88%; max-width: 22rem; }
-  .birthday-seal { top: -1.4rem; right: -1rem; width: 5.5rem; height: 5.5rem; }
-  .birthday-seal strong { font-size: 2.7rem; }
-  .birthday-seal span { font-size: .43rem; }
+  .birthday-seal { top: -1.4rem; right: -1rem; width: 6.5rem; height: 6.5rem; gap: .3rem; padding: .625rem; }
+  .birthday-seal > strong { font-size: 2.7rem; }
+  .birthday-seal > span { font-size: .47rem; }
   .birthday-footer { margin-top: 2.5rem; flex-wrap: wrap; justify-content: center; gap: .25rem 1.5rem; font-size: .7rem; text-align: center; }
   .birthday-party span:nth-child(1) { left: auto; right: 5%; top: 2%; font-size: 1.4rem; }
 }
