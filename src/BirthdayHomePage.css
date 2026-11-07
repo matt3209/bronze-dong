@@ -112,15 +112,8 @@
   position: absolute;
   top: -1.7rem;
   right: -1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .4rem;
   width: 7.5rem;
   height: 7.5rem;
-  padding: .75rem;
-  text-align: center;
   border: 1px solid var(--birthday-teal);
   outline: 5px solid var(--birthday-gold);
   border-radius: 50%;
@@ -128,8 +121,29 @@
   background: var(--birthday-gold);
   transform: rotate(12deg);
 }
-.birthday-seal > span { display: block; flex: none; font: 600 .52rem/1.2 system-ui, sans-serif; letter-spacing: .1em; white-space: nowrap; }
-.birthday-seal > strong { display: block; flex: none; position: relative; top: -.1em; font: italic 500 3.2rem/1.1 'Playfair Display', Georgia, serif; }
+.birthday-seal svg { display: block; width: 100%; height: 100%; overflow: visible; fill: currentColor; text-anchor: middle; }
+.birthday-seal-label { font: 600 8px system-ui, sans-serif; letter-spacing: .8px; }
+.birthday-seal-number { font: italic 500 50px Georgia, serif; }
+
+.birthday-video-dialog {
+  width: min(44rem, calc(100vw - 2rem));
+  max-height: calc(100dvh - 2rem);
+  padding: 1rem;
+  border: 1px solid var(--birthday-gold);
+  border-radius: .75rem;
+  background: var(--birthday-teal);
+  color: var(--birthday-paper);
+  box-shadow: 0 20px 80px #0008;
+}
+.birthday-video-dialog::backdrop { background: #07191ce8; }
+.birthday-video-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .75rem; }
+.birthday-video-heading h2 { margin: 0; font: 500 1.5rem/1.4 'Playfair Display', Georgia, serif; }
+.birthday-video-heading button { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border: 1px solid #c2ceca70; border-radius: 50%; background: transparent; color: var(--birthday-paper); font: 400 1.75rem/1 system-ui, sans-serif; cursor: pointer; }
+.birthday-video-heading button:hover { background: #ffffff15; }
+.birthday-video-dialog video { display: block; width: 100%; max-height: calc(100dvh - 9rem); background: #000; border-radius: .25rem; }
+.birthday-video-dialog button:focus-visible, .birthday-video-dialog video:focus-visible, .birthday-video-dialog a:focus-visible { outline: 3px solid var(--birthday-pink); outline-offset: 3px; }
+.birthday-video-error { font: 400 .9rem/1.6 system-ui, sans-serif; }
+.birthday-video-error a { color: var(--birthday-gold); }
 .birthday-footer {
   display: flex;
   justify-content: space-between;
@@ -176,9 +190,7 @@
   .birthday-gift strong { font-size: 1rem; }
   .birthday-wish { margin-inline: auto; font-size: .75rem; }
   .birthday-photo { width: 88%; max-width: 22rem; }
-  .birthday-seal { top: -1.4rem; right: -1rem; width: 6.5rem; height: 6.5rem; gap: .3rem; padding: .625rem; }
-  .birthday-seal > strong { font-size: 2.7rem; }
-  .birthday-seal > span { font-size: .47rem; }
+  .birthday-seal { top: -1.4rem; right: -1rem; width: 6.5rem; height: 6.5rem; }
   .birthday-footer { margin-top: 2.5rem; flex-wrap: wrap; justify-content: center; gap: .25rem 1.5rem; font-size: .7rem; text-align: center; }
   .birthday-party span:nth-child(1) { left: auto; right: 5%; top: 2%; font-size: 1.4rem; }
 }
