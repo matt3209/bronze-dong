@@ -1,0 +1,181 @@
+.birthday-home {
+  --birthday-teal: #173b3f;
+  --birthday-pink: #f2b8b2;
+  --birthday-gold: #e9c779;
+  --birthday-paper: #f5eee5;
+  --birthday-green: #153d2d;
+  position: relative;
+  isolation: isolate;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: clamp(2.5rem, 5vw, 5rem) clamp(1.5rem, 6vw, 6rem) 1.5rem;
+  color: var(--birthday-paper);
+  background: var(--birthday-teal);
+}
+
+.birthday-home::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: 50rem;
+  height: 50rem;
+  right: -30rem;
+  top: -20rem;
+  border: 1px solid #e9c77925;
+  border-radius: 50%;
+  box-shadow: 0 0 0 3rem #e9c77908, 0 0 0 6rem #e9c77905;
+  pointer-events: none;
+}
+
+.birthday-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  width: 100%;
+  max-width: 75rem;
+  margin: auto;
+}
+
+.birthday-message { padding-bottom: 2rem; }
+.birthday-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin: 0 0 1.8rem;
+  color: var(--birthday-gold);
+  font: 500 .7rem/1.6 system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: .22em;
+}
+.birthday-eyebrow span { font-size: 1.3rem; }
+.birthday-message h1 {
+  margin: 0;
+  font: 500 clamp(2.5rem, 4.6vw, 4.2rem)/1.15 'Playfair Display', Georgia, serif;
+  letter-spacing: -.04em;
+}
+.birthday-message h1 em {
+  display: block;
+  margin: .08em 0 .35em -.045em;
+  color: var(--birthday-pink);
+  font: italic 500 clamp(5.5rem, 10vw, 9rem)/1 'Playfair Display', Georgia, serif;
+  letter-spacing: -.065em;
+}
+
+.birthday-gift {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 5.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--birthday-gold);
+  border-radius: .5rem;
+  background: var(--birthday-paper);
+  color: var(--birthday-green);
+  text-decoration: none;
+  box-shadow: 4px 5px 0 #0d292d;
+  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+.birthday-cup { flex: 0 0 auto; }
+.birthday-gift > span:not(.birthday-gift-arrow) { font: 400 .85rem/1.6 system-ui, sans-serif; }
+.birthday-gift strong { display: block; font-size: 1.1rem; font-weight: 650; }
+.birthday-gift-arrow { margin-left: 1.5rem; font-size: 1.8rem; }
+.birthday-gift:hover { transform: translate(-2px, -3px); box-shadow: 6px 8px 0 #0d292d; background: #fff9f1; }
+.birthday-gift:active { transform: translate(2px, 2px); box-shadow: 2px 3px 0 #0d292d; }
+.birthday-gift:focus-visible, .birthday-footer a:focus-visible { outline: 3px solid var(--birthday-pink); outline-offset: 6px; }
+.birthday-wish { max-width: 23rem; margin: 1.4rem 0 0; color: #c2ceca; font: 400 .85rem/1.7 system-ui, sans-serif; }
+
+.birthday-photo { position: relative; margin: 0 auto; width: min(100%, 27rem); padding: 0 .5rem; }
+.birthday-photo-frame {
+  margin: 0;
+  padding: .7rem .7rem 0;
+  background: var(--birthday-paper);
+  transform: rotate(3deg);
+  box-shadow: 0 20px 45px #071e2545;
+}
+.birthday-photo img { display: block; width: 100%; height: auto; }
+.birthday-photo figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .8rem .35rem;
+  color: var(--birthday-teal);
+  font: italic 500 1rem/1.4 'Playfair Display', Georgia, serif;
+}
+.birthday-photo figcaption > span:last-child { font-size: 1.5rem; line-height: 1; }
+.birthday-seal {
+  position: absolute;
+  top: -1.7rem;
+  right: -1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid var(--birthday-teal);
+  outline: 5px solid var(--birthday-gold);
+  border-radius: 50%;
+  color: var(--birthday-teal);
+  background: var(--birthday-gold);
+  transform: rotate(12deg);
+}
+.birthday-seal span { font: 600 .5rem/1.5 system-ui, sans-serif; letter-spacing: .1em; }
+.birthday-seal strong { font: italic 500 3.4rem/1 'Playfair Display', Georgia, serif; }
+.birthday-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 75rem;
+  margin: 3.5rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid #c2ceca30;
+  color: #c2ceca;
+  font: 400 .75rem/1.6 system-ui, sans-serif;
+}
+.birthday-footer > span span { color: var(--birthday-pink); margin-left: .25rem; }
+.birthday-footer a { padding: .5rem 0; color: var(--birthday-gold); text-decoration: none; }
+.birthday-footer a:hover { text-decoration: underline; text-underline-offset: .25em; }
+.birthday-party { position: absolute; inset: 0; pointer-events: none; z-index: -1; color: var(--birthday-gold); }
+.birthday-party span { position: absolute; }
+.birthday-party span:nth-child(1) { top: 6%; left: 48%; font-size: 2rem; }
+.birthday-party span:nth-child(2) { top: 48%; right: 2%; font-size: 2.5rem; color: var(--birthday-pink); }
+.birthday-party span:nth-child(3) { bottom: 20%; left: 3%; font-size: 1rem; }
+.birthday-party span:nth-child(4) { top: 20%; left: 2%; font-size: .8rem; color: var(--birthday-pink); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .birthday-message { animation: birthday-arrive 700ms ease both; }
+  .birthday-photo { animation: birthday-arrive 850ms 120ms ease both; }
+  @keyframes birthday-arrive { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .birthday-gift { transition: none; }
+  .birthday-gift:hover, .birthday-gift:active { transform: none; }
+}
+
+@media (max-width: 720px) {
+  .birthday-home { padding: 2.5rem 1.5rem 1rem; }
+  .birthday-layout { grid-template-columns: 1fr; gap: 3.5rem; max-width: 28rem; }
+  .birthday-message { padding: 0; text-align: center; }
+  .birthday-eyebrow { justify-content: center; font-size: .6rem; margin-bottom: 1rem; }
+  .birthday-message h1 { font-size: clamp(2.3rem, 9vw, 3.5rem); }
+  .birthday-message h1 em { font-size: clamp(5.5rem, 22vw, 8rem); margin-bottom: .3em; }
+  .birthday-gift { margin-inline: auto; text-align: left; gap: .75rem; }
+  .birthday-gift-arrow { margin-left: .5rem; }
+  .birthday-gift strong { font-size: 1rem; }
+  .birthday-wish { margin-inline: auto; font-size: .75rem; }
+  .birthday-photo { width: 88%; max-width: 22rem; }
+  .birthday-seal { top: -1.4rem; right: -1rem; width: 5.5rem; height: 5.5rem; }
+  .birthday-seal strong { font-size: 2.7rem; }
+  .birthday-seal span { font-size: .43rem; }
+  .birthday-footer { margin-top: 2.5rem; flex-wrap: wrap; justify-content: center; gap: .25rem 1.5rem; font-size: .7rem; text-align: center; }
+  .birthday-party span:nth-child(1) { left: auto; right: 5%; top: 2%; font-size: 1.4rem; }
+}

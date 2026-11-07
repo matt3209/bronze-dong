@@ -5,8 +5,9 @@ import SiteNavigation from './SiteNavigation'
 import MattMurphy from './MattMurphy'
 import ManiWaters from './ManiWaters'
 import HiddenArchive from './HiddenArchive'
+import BirthdayHomePage from './BirthdayHomePage'
 
-function HomePage() {
+function ArchivedHomePage() {
   return (
     <div className="app statue-home">
       <h1 className="visually-hidden">Chris, Custodian of the Waters</h1>
@@ -28,13 +29,15 @@ function HomePage() {
 }
 
 const pageFromHash = () => ({
+  '#archived-homepage': 'archived-homepage',
   '#mattmurphy': 'mattmurphy',
   '#maniwaters': 'maniwaters',
   '#hidden': 'hidden',
 })[window.location.hash] || 'home'
 
 const pageTitles = {
-  home: 'BRONZEDONGS.COM · THE BRONZE DONG',
+  home: 'Happy 30th Alison! · Bronze Dongs',
+  'archived-homepage': 'Archived Homepage · BRONZEDONGS.COM',
   maniwaters: 'BRONZEDONGS.COM · MANI WATERS MMXXVI',
   mattmurphy: 'MattMurphy · The Buffalo File · BRONZEDONGS.COM',
   hidden: 'Hidden · BRONZEDONGS.COM',
@@ -85,7 +88,8 @@ function App() {
       </a>
       <SiteNavigation page={page} onNavigate={navigateTo} />
       <main id="main-content" className="page-content" ref={mainRef} tabIndex={-1}>
-        <div className="page-view" hidden={page !== 'home'}><HomePage /></div>
+        <div className="page-view" hidden={page !== 'home'}><BirthdayHomePage onNavigate={navigateTo} /></div>
+        <div className="page-view" hidden={page !== 'archived-homepage'}><ArchivedHomePage /></div>
         <div className="page-view" hidden={page !== 'maniwaters'}><ManiWaters onNavigate={navigateTo} /></div>
         <div className="page-view" hidden={page !== 'mattmurphy'}><MattMurphy onNavigate={navigateTo} /></div>
         {page === 'hidden' && <HiddenArchive />}
